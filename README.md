@@ -1,4 +1,7 @@
-# TPO-AyED1-2024
+# TPO-AyED1-2024 
+Grupo: "Printeo y me voy".
+Integrantes: Gaspar Ginter, Lucas Alberto Aguilar, Franco Damian Idoyaga y Sebastian Carini.
+
 Esto no es nada mas que un simple esqueleto de donde vamos a trabajar.
 El objetivo del programa basicamente cargar datos de eventos de eSports (Deportes Electronicos), 
 y que estos esten acomodados de manera acorde al tipo y necesidades del evento.
