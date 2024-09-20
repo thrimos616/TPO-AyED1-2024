@@ -70,6 +70,17 @@
                             "mvp": "Jugador E3"
                         }
                     ]
+                },
+                {
+                    "ronda": 4,
+                    "resultados": [
+                        {
+                            "equipo1": "Equipo A",
+                            "equipo2": "Equipo G",
+                            "ganador": "Equipo G",
+                            "mvp": "Jugador G2"
+                        }
+                    ]
                 }
             ],
             "podio": [
