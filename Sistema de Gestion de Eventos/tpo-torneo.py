@@ -1,6 +1,5 @@
 from os import system, name
 
-
 def limpiar_pantalla()-> None:
     # La pantalla del terminal se limpia según el sistema operativo
     if name == "posix":
