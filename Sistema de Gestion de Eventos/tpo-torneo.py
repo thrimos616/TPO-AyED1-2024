@@ -1,8 +1,8 @@
 from os import system, name
 
 
-def limpiar_pantalla():
-    # Función para limpiar pantalla.
+def limpiar_pantalla()-> None:
+    # La pantalla del terminal se limpia según el sistema operativo
     if name == "posix":
         system("clear")
     else:
@@ -10,21 +10,35 @@ def limpiar_pantalla():
 
 
 # Funciones para el menú de carga de datos.
-def registrar_torneo():
+def registrar_torneo()-> None:
+    """
+    Precondición: El sistema está listo para registrar un torneo
+    Postcondición: Se registra un nuevo torneo en el sistema y se muestra un mensaje confirmando el registro.
+    """ 
     limpiar_pantalla()
     print("Registrar Torneo\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def cargar_equipo():
+def cargar_equipo()-> None:
+    """
+    Precondición: El torneo debe estar registrado previamente.
+    Postcondición: Se registra un equipo en el torneo y se muestra un mensaje confirmando la carga.
+    """
+
     limpiar_pantalla()
     print("Cargar equipo\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def cargar_integrantes():
+def cargar_integrantes()-> None:
+    """
+    Precondición: El equipo debe estar cargado previamente.
+    Postcondición: Se registran los integrantes del equipo y se muestra un mensaje confirmando la carga.
+    """
+    
     limpiar_pantalla()
     print("Cargar datos de cada integrante\n")
     # Función en construcción, vuelva prontos.
@@ -32,35 +46,59 @@ def cargar_integrantes():
 
 
 # Funciones para el menú de funcionamiento del programa
-def elegir_enfrentamientos():
+def elegir_enfrentamientos()->None:
+    """
+    Precondición: Deben estar registrados los 8 equipos para el torneo.
+    Postcondición: Se seleccionan los equipos que se enfrentarán en la próxima ronda.
+    """
+
     limpiar_pantalla()
     print("Elegir enfrentamientos\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def ingresar_resultado_ronda():
+def ingresar_resultado_ronda()-> None:
+    """
+    Precondición: Deben estar los enfrentamientos ya definidos.
+    Postcondición: Se registra el resultado de la ronda y se actualizan las estadísticas del torneo.
+    """
+
     limpiar_pantalla()
     print("Ingresar resultado de la ronda\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def mostrar_estadisticas():
+def mostrar_estadisticas()-> None:
+    """
+    Precondición: Debe haber al menos un resultado registrado en el torneo.
+    Postcondición: Se muestran las estadísticas actuales del torneo.
+    """
     limpiar_pantalla()
     print("Mostrar estadísticas del torneo\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def editar_datos_jugador():
+def editar_datos_jugador()-> None:
+    """
+    Precondición: El jugador debe estar registrado en un equipo.
+    Postcondición: Se modifican los datos del jugador seleccionado.
+    """
+
     limpiar_pantalla()
     print("Editar datos del jugador\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
-def generar_podio_mvp():
+def generar_podio_mvp()-> None:
+    """
+    Precondición: El torneo debe haber finalizado.
+    Postcondición: Se genera el podio de los equipos y se selecciona el MVP del torneo.
+    """
+
     limpiar_pantalla()
     print("Generar podio y MVP\n")
     # Función en construcción, vuelva prontos.
@@ -68,7 +106,12 @@ def generar_podio_mvp():
 
 
 # Funciones de menú
-def opciones_cargar_datos():
+def opciones_cargar_datos()-> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Se muestran las opciones del menú para la carga de datos inicial.
+    """
+
     print("Menú de carga de datos inicial..\n")
     print("1- Registrar torneo.")
     print("2- Cargar equipo.")
@@ -76,7 +119,11 @@ def opciones_cargar_datos():
     print("0- Volver al menú principal.")
 
 
-def opciones_funcionamiento():
+def opciones_funcionamiento()-> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Se muestran las opciones del menú de funcionamiento del programa.
+    """
     print("Menú de funcionamiento del programa.\n")
     print("1- Elegir enfrentamientos")
     print("2- Ingresar resultado de la ronda")
@@ -91,8 +138,8 @@ def opciones_funcionamiento():
 funciones_cargar_datos = [
     registrar_torneo,  # op 1
     cargar_equipo,  # op 2
-    cargar_integrantes,
-]  # op 3
+    cargar_integrantes,# op 3
+] 
 
 funciones_funcionamiento = [
     elegir_enfrentamientos,  # op 1
@@ -103,7 +150,11 @@ funciones_funcionamiento = [
 ]
 
 
-def menu_cargar_datos():
+def menu_cargar_datos()-> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta la función seleccionada entre las opciones del menú de carga de datos inicial.
+    """
     while True:
         limpiar_pantalla()
         opciones_cargar_datos()
@@ -122,7 +173,11 @@ def menu_cargar_datos():
             input("Presione Enter para continuar...")
 
 
-def menu_funcionamiento():
+def menu_funcionamiento()-> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta la función seleccionada entre las opciones del menú de funcionamiento del programa.
+    """
     while True:
         limpiar_pantalla()
         opciones_funcionamiento()
@@ -141,7 +196,11 @@ def menu_funcionamiento():
             input("Presione Enter para continuar...")
 
 
-def menu_principal():
+def menu_principal()-> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta el submenú seleccionado o cierra el programa.
+    """
     while True:
         limpiar_pantalla()
         print("Bienvenido al menú principal.\n")
