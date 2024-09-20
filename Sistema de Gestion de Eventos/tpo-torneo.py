@@ -1,12 +1,11 @@
 from os import system, name
+from tabulate import tabulate
+import random as rn 
+import json as js
 
 def limpiar_pantalla()-> None:
     # La pantalla del terminal se limpia según el sistema operativo
-    if name == "posix":
-        system("clear")
-    else:
-        system("cls")
-
+    system("cls" if name == "nt" else "clear")
 
 # Funciones para el menú de carga de datos.
 def registrar_torneo()-> None:
