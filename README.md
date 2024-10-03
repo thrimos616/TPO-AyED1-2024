@@ -10,3 +10,7 @@ cargar el nombre del evento, crear distintos torneos, editar datos y/o estadisti
 (Jugadores, Nombres, DNI, edad y palmares)
 El programa se encarga de: Designa un mvp del torneo y de cada partida (El mejor jugador), organiza automaticamente las fases segun el resultado de las partidas, 
 designa un tercer puesto y genera un podio.
+
+
+1- seleccionar_juegos(): todavia tiene que agregar el juego a json
+2- ingresar_resultado_ronda(): todavia tiene que agreagar los resultados a json

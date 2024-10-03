@@ -1,25 +1,67 @@
 from os import system, name
-from typing import List
+from typing import Tuple
 from tabulate import tabulate
-import random as rn
 import json as js
 
+def torneo()-> None:
+    """
+    Precondición: Nada
+    Argumentos: Presenta torneo
+    Postcondicion: nada
+    """
+    print("OLYMPUS ESPORTS")
+    return None
 
 def limpiar_pantalla() -> None:
-    # La pantalla del terminal se limpia según el sistema operativo
+    """
+    Precondición: nada
+    Argumentos: Limpia la pantalla
+    Postcondición: nada
+    """
     system("cls" if name == "nt" else "clear")
-
+    torneo()
+    return None
 
 # Funciones para el menú de carga de datos.
-def registrar_torneo() -> None:
+
+def mostrar_juegos()-> Tuple[str]:
     """
-    Precondición: El sistema está listo para registrar un torneo
-    Postcondición: Se registra un nuevo torneo en el sistema y se muestra un mensaje confirmando el registro.
+    Precondición: None
+    Argumentos: Muestra los juegos disponibles y retorna la tupla con estos mismos
+    Postcondición: Retorna una tupla con los juegos disponibles
     """
+    juegos = ( #Juegos permitidos
+    "Counter Strike",
+    "Valorant",
+    "League of Legend",
+    "Rainbow 6s",
+    "Overwatch"
+    )
+    print("\nJuegos permitidos:")
+    for index,juego in enumerate(juegos):
+        print(f"{index + 1}. {juego}")
+    return juegos
+
+def seleccionar_juego() -> str:
+    """
+    Precondición: None
+    Argumentos: Utiliza la funcion 'mostrar juegos' y selecciona un juego disponible en la tupla
+    Postcondición: Retorna el juego seleccionado.
+    """
+
     limpiar_pantalla()
-    print("Registrar Torneo\n")
-    # Función en construcción, vuelva prontos.
-    input("Presione Enter para volver al menú...")
+    print("Seleccion de juego.\n")
+
+    juegos = mostrar_juegos()
+    while True:
+        try:
+            juego_seleccionado = int(input("\nIndica el número del juego: "))
+            if juego_seleccionado <= 0 or juego_seleccionado > 5:
+                print("Número inválido, intente nuevamente.")
+            else:
+                return juegos[juego_seleccionado- 1]
+        except ValueError:
+            print("\nError - Ingrese un valor válido.")
 
 
 def cargar_equipo() -> None:
@@ -59,16 +101,36 @@ def elegir_enfrentamientos() -> None:
     input("Presione Enter para volver al menú...")
 
 
-def ingresar_resultado_ronda() -> None:
+def ingresar_resultado_ronda() -> str:
     """
-    Precondición: Deben estar los enfrentamientos ya definidos.
-    Postcondición: Se registra el resultado de la ronda y se actualizan las estadísticas del torneo.
+    Precondicion: Ninguna
+    Argumentos: Ingresa el ganador de cada ronda hasta que uno llegue a 5 rondas ganadas
+    Postcondicion: Retorna el ganador de la ronda
     """
+    equipo1 = 0
+    equipo2 = 0
 
-    limpiar_pantalla()
-    print("Ingresar resultado de la ronda\n")
-    # Función en construcción, vuelva prontos.
+    print(f"1:{equipo1} o 2:{equipo2}")
+
+    resultado_ronda = int(input("Ingrese el ganador de la ronda (1 o 2): "))
+
+    while True:
+        if resultado_ronda not in (1,2):
+            print("Ingrese un número válido.")
+        elif resultado_ronda == 1:
+            equipo1 += 1
+        else:
+            equipo2 += 1
+        if equipo1 == 5:
+            print(f"El equipo {equipo1} es el ganador.")
+            ganador = equipo1
+            break
+        elif equipo2 == 5:
+            print(f"El equipo {equipo2} es el ganador.")
+            ganador = equipo2
+            break
     input("Presione Enter para volver al menú...")
+    return ganador
 
 
 def mostrar_estadisticas() -> None:
@@ -114,10 +176,11 @@ def opciones_cargar_datos() -> None:
     """
 
     print("Menú de carga de datos inicial..\n")
-    print("1- Registrar torneo.")
+    print("1- Seleccionar juego.")
     print("2- Cargar equipo.")
     print("3- Cargar integrantes del equipo.")
     print("0- Volver al menú principal.")
+    return None
 
 
 def opciones_funcionamiento() -> None:
@@ -132,23 +195,7 @@ def opciones_funcionamiento() -> None:
     print("4- Editar datos del jugador")
     print("5- Generar podio y MVP")
     print("0- Volver al menú principal")
-
-
-# Listas de funciones para cada menú
-
-funciones_cargar_datos = [
-    registrar_torneo,  # op 1
-    cargar_equipo,  # op 2
-    cargar_integrantes,  # op 3
-]
-
-funciones_funcionamiento = [
-    elegir_enfrentamientos,  # op 1
-    ingresar_resultado_ronda,  # op 2
-    mostrar_estadisticas,  # op 3
-    editar_datos_jugador,  # op 4
-    generar_podio_mvp,  # op 5
-]
+    return None
 
 
 def menu_cargar_datos() -> None:
@@ -160,18 +207,26 @@ def menu_cargar_datos() -> None:
         limpiar_pantalla()
         opciones_cargar_datos()
         try:
-            op = int(input("Ingrese una opción: "))
+            
+            op = int(input("Ingrese una opción(0 Menú principal): "))
             if op >= 0 and op <= 3:
                 if op == 0:
                     break
-                elif op >= 1 and op <= 3:
-                    funciones_cargar_datos[op - 1]()
+                if op == 1:
+                    limpiar_pantalla()
+                    juego = seleccionar_juego()
+                    input(f"El juego seleccionado fue el {juego}.\nEnter para continuar.")
+                elif op == 2:
+                    pass
+                elif op == 3:
+                    pass
             else:
                 print("Opción inválida.")
                 input("Presione Enter para continuar...")
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
+    return None
 
 
 def menu_funcionamiento() -> None:
@@ -183,18 +238,29 @@ def menu_funcionamiento() -> None:
         limpiar_pantalla()
         opciones_funcionamiento()
         try:
-            op = int(input("Ingrese una opción: "))
+            op = int(input("Ingrese una opción(0 Menú principal.): "))
             if op >= 0 and op <= 5:
                 if op == 0:
                     break
-                elif op >= 1 and op <= 5:
-                    funciones_funcionamiento[op - 1]()
+                if op == 1:
+                    limpiar_pantalla()
+                elif op == 2:
+                    limpiar_pantalla()
+                    ganador = ingresar_resultado_ronda()
+                    input(f"El ganador de la ronda es el equipo {ganador}.")
+                elif op == 3:
+                    limpiar_pantalla()
+                elif op == 4:
+                    limpiar_pantalla()
+                elif op == 5:
+                    limpiar_pantalla()
             else:
                 print("Opción inválida.")
                 input("Presione Enter para continuar...")
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
+    return None
 
 
 def menu_principal() -> None:
@@ -224,7 +290,7 @@ def menu_principal() -> None:
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
-
+    return None
 
 if __name__ == "__main__":
     menu_principal()
