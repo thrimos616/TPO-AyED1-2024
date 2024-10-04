@@ -1,21 +1,87 @@
 from os import system, name
+from typing import Tuple
+from tabulate import tabulate
+import json as js
 
+def torneo()-> None:
+    """
+    Precondición: Nada
+    Argumentos: Presenta torneo
+    Postcondicion: nada
+    """
+    print("OLYMPUS ESPORTS")
+    return None
 
-def limpiar_pantalla():
-    # Función para limpiar pantalla.
-    if name == "posix":
-        system("clear")
-    else:
-        system("cls")
-
+def limpiar_pantalla() -> None:
+    """
+    Precondición: nada
+    Argumentos: Limpia la pantalla
+    Postcondición: nada
+    """
+    system("cls" if name == "nt" else "clear")
+    torneo()
+    return None
 
 # Funciones para el menú de carga de datos.
-def registrar_torneo():
-    limpiar_pantalla()
-    print("Registrar Torneo\n")
-    # Función en construcción, vuelva prontos.
-    input("Presione Enter para volver al menú...")
 
+def mostrar_juegos()-> Tuple[str]:
+    """
+    Precondición: None
+    Argumentos: Muestra los juegos disponibles y retorna la tupla con estos mismos
+    Postcondición: Retorna una tupla con los juegos disponibles
+    """
+    juegos = ( #Juegos permitidos
+    "Counter Strike",
+    "Valorant",
+    "League of Legend",
+    "Rainbow 6s",
+    "Overwatch"
+    )
+    print("\nJuegos permitidos:")
+    for index,juego in enumerate(juegos):
+        print(f"{index + 1}. {juego}")
+    return juegos
+
+def seleccionar_juego() -> str:
+    """
+    Precondición: None
+    Argumentos: Utiliza la funcion 'mostrar juegos' y selecciona un juego disponible en la tupla
+    Postcondición: Retorna el juego seleccionado.
+    """
+
+    limpiar_pantalla()
+    print("Seleccion de juego.\n")
+
+    juegos = mostrar_juegos()
+    while True:
+        try:
+            juego_seleccionado = int(input("\nIndica el número del juego: "))
+            if juego_seleccionado <= 0 or juego_seleccionado > 5:
+                print("Número inválido, intente nuevamente.")
+            else:
+                return juegos[juego_seleccionado- 1]
+        except ValueError:
+            print("\nError - Ingrese un valor válido.")
+
+def crear_torneo(): 
+    torneo = {
+        "nombre_torneo": nombre_torneo,
+        "juego": juego,
+        "equipos": [],
+        "rondas": [],
+        "podio": [],
+        "mvp_torneo": ""
+    }
+    
+    # lo guarda en un json
+    try:
+        with open('torneos.json', 'a') as file:
+            json.dump({"torneos": [torneo]}, file, indent=4)
+    except Exception as e:
+        print(f"Error al guardar el torneo: {e}")
+
+    print(f"Torneo '{nombre_torneo}' registrado con éxito para el juego '{juego}'.")
+    input("Presione Enter para volver al menú...")
 
 def cargar_equipo():
     limpiar_pantalla()
@@ -38,17 +104,55 @@ def elegir_enfrentamientos():
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
+def ingresar_resultado_ronda() -> str:
+    """
+    Precondicion: Ninguna
+    Argumentos: Ingresa el ganador de cada ronda hasta que uno llegue a 5 rondas ganadas
+    Postcondicion: Retorna el ganador de la ronda
+    """
+    resultados = []
+    equipo1 = 0
+    equipo2 = 0
 
-def ingresar_resultado_ronda():
+    print(f"1:{equipo1} o 2:{equipo2}") 
+
+    resultado_ronda = int(input("Ingrese el ganador de la ronda (1 o 2): "))
+
+    while True:
+
+        resultado = {
+            "equipo1": equipo1,
+            "equipo2": equipo2,
+            "ganador_ronda": f"Equipo {resultado_ronda}"
+        }
+        resultados.append(resultado)
+
+        if resultado_ronda not in (1,2):
+            print("Ingrese un número válido.")
+        elif resultado_ronda == 1:
+            equipo1 += 1
+        else:
+            equipo2 += 1
+        if equipo1 == 5:
+            print(f"El equipo {equipo1} es el ganador.")
+            ganador = equipo1
+            break
+        elif equipo2 == 5: 
+            print(f"El equipo {equipo2} es el ganador.")
+            ganador = equipo2
+            break
+
+    with open('resultados_partida.json', 'w') as archivo_json:
+        js.dump(resultados, archivo_json, indent=4)
+
+    return ganador
+
+
+#TAB
+def mostrar_estadisticas_partidas():
     limpiar_pantalla()
-    print("Ingresar resultado de la ronda\n")
-    # Función en construcción, vuelva prontos.
-    input("Presione Enter para volver al menú...")
-
-
-def mostrar_estadisticas():
-    limpiar_pantalla()
-    print("Mostrar estadísticas del torneo\n")
+    # (matriz con todas las estadisticas de cada partida en particular) = [[]]
+    # print(tabulate(matriz, headers=["Nombre", "Kills", "Veces que murió"]))
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
@@ -59,17 +163,17 @@ def editar_datos_jugador():
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
-
+#TAB
 def generar_podio_mvp():
     limpiar_pantalla()
-    print("Generar podio y MVP\n")
+    # print(tabulate(matriz, headers=["Puesto", "Equipo"]))
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
 
 # Funciones de menú
 def opciones_cargar_datos():
-    print("Menú de carga de datos inicial..\n")
+    print("Menú de carga de datos inicial...\n")
     print("1- Registrar torneo.")
     print("2- Cargar equipo.")
     print("3- Cargar integrantes del equipo.")
