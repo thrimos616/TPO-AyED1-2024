@@ -50,12 +50,46 @@ def seleccionar_juego() -> str:
     """
 
     limpiar_pantalla()
-    print("Registrar Torneo\n")
-    # Función en construcción, vuelva prontos.
+    print("Seleccion de juego.\n")
+
+    juegos = mostrar_juegos()
+    while True:
+        try:
+            juego_seleccionado = int(input("\nIndica el número del juego: "))
+            if juego_seleccionado <= 0 or juego_seleccionado > 5:
+                print("Número inválido, intente nuevamente.")
+            else:
+                return juegos[juego_seleccionado- 1]
+        except ValueError:
+            print("\nError - Ingrese un valor válido.")
+
+
+def crear_torneo() -> None:
+    torneo = {
+        "nombre_torneo": nombre_torneo,
+        "juego": juego,
+        "equipos": [],
+        "rondas": [],
+        "podio": [],
+        "mvp_torneo": ""
+    }
+    
+    # lo guarda en un json
+    try:
+        with open('torneos.json', 'a') as file:
+            json.dump({"torneos": [torneo]}, file, indent=4)
+    except Exception as e:
+        print(f"Error al guardar el torneo: {e}")
+
+    print(f"Torneo '{nombre_torneo}' registrado con éxito para el juego '{juego}'.")
     input("Presione Enter para volver al menú...")
 
+def cargar_equipo() -> None:
+    """
+    Precondición: El torneo debe estar registrado previamente.
+    Postcondición: Se registra un equipo en el torneo y se muestra un mensaje confirmando la carga.
+    """
 
-def cargar_equipo():
     limpiar_pantalla()
     print("Cargar equipo\n")
     # Función en construcción, vuelva prontos.
@@ -87,11 +121,48 @@ def elegir_enfrentamientos() -> None:
     input("Presione Enter para volver al menú...")
 
 
-def ingresar_resultado_ronda():
-    limpiar_pantalla()
-    print("Ingresar resultado de la ronda\n")
-    # Función en construcción, vuelva prontos.
-    input("Presione Enter para volver al menú...")
+def ingresar_resultado_ronda() -> str:
+    """
+    Precondicion: Ninguna
+    Argumentos: Ingresa el ganador de cada ronda hasta que uno llegue a 5 rondas ganadas
+    Postcondicion: Retorna el ganador de la ronda
+    """
+    resultados = []
+    equipo1 = 0
+    equipo2 = 0
+
+    print(f"1:{equipo1} o 2:{equipo2}") 
+
+    resultado_ronda = int(input("Ingrese el ganador de la ronda (1 o 2): "))
+
+    while True:
+
+        resultado = {
+            "equipo1": equipo1,
+            "equipo2": equipo2,
+            "ganador_ronda": f"Equipo {resultado_ronda}"
+        }
+        resultados.append(resultado)
+
+        if resultado_ronda not in (1,2):
+            print("Ingrese un número válido.")
+        elif resultado_ronda == 1:
+            equipo1 += 1
+        else:
+            equipo2 += 1
+        if equipo1 == 5:
+            print(f"El equipo {equipo1} es el ganador.")
+            ganador = equipo1
+            break
+        elif equipo2 == 5: 
+            print(f"El equipo {equipo2} es el ganador.")
+            ganador = equipo2
+            break
+
+    with open('resultados_partida.json', 'w') as archivo_json:
+        js.dump(resultados, archivo_json, indent=4)
+
+    return ganador
 
 
 def mostrar_estadisticas():
@@ -120,11 +191,15 @@ def generar_podio_mvp():
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
-
 # Funciones de menú
-def opciones_cargar_datos():
+def opciones_cargar_datos() -> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Se muestran las opciones del menú para la carga de datos inicial.
+    """
+
     print("Menú de carga de datos inicial..\n")
-    print("1- Registrar torneo.")
+    print("1- Seleccionar juego.")
     print("2- Cargar equipo.")
     print("3- Cargar integrantes del equipo.")
     print("0- Volver al menú principal.")
