@@ -50,38 +50,10 @@ def seleccionar_juego() -> str:
     """
 
     limpiar_pantalla()
-    print("Seleccion de juego.\n")
-
-    juegos = mostrar_juegos()
-    while True:
-        try:
-            juego_seleccionado = int(input("\nIndica el número del juego: "))
-            if juego_seleccionado <= 0 or juego_seleccionado > 5:
-                print("Número inválido, intente nuevamente.")
-            else:
-                return juegos[juego_seleccionado- 1]
-        except ValueError:
-            print("\nError - Ingrese un valor válido.")
-
-def crear_torneo(): 
-    torneo = {
-        "nombre_torneo": nombre_torneo,
-        "juego": juego,
-        "equipos": [],
-        "rondas": [],
-        "podio": [],
-        "mvp_torneo": ""
-    }
-    
-    # lo guarda en un json
-    try:
-        with open('torneos.json', 'a') as file:
-            json.dump({"torneos": [torneo]}, file, indent=4)
-    except Exception as e:
-        print(f"Error al guardar el torneo: {e}")
-
-    print(f"Torneo '{nombre_torneo}' registrado con éxito para el juego '{juego}'.")
+    print("Registrar Torneo\n")
+    # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
+
 
 def cargar_equipo():
     limpiar_pantalla()
@@ -90,7 +62,12 @@ def cargar_equipo():
     input("Presione Enter para volver al menú...")
 
 
-def cargar_integrantes():
+def cargar_integrantes() -> None:
+    """
+    Precondición: El equipo debe estar cargado previamente.
+    Postcondición: Se registran los integrantes del equipo y se muestra un mensaje confirmando la carga.
+    """
+
     limpiar_pantalla()
     print("Cargar datos de cada integrante\n")
     # Función en construcción, vuelva prontos.
@@ -98,58 +75,26 @@ def cargar_integrantes():
 
 
 # Funciones para el menú de funcionamiento del programa
-def elegir_enfrentamientos():
+def elegir_enfrentamientos() -> None:
+    """
+    Precondición: Deben estar registrados los 8 equipos para el torneo.
+    Postcondición: Se seleccionan los equipos que se enfrentarán en la próxima ronda.
+    """
+
     limpiar_pantalla()
     print("Elegir enfrentamientos\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
-def ingresar_resultado_ronda() -> str:
-    """
-    Precondicion: Ninguna
-    Argumentos: Ingresa el ganador de cada ronda hasta que uno llegue a 5 rondas ganadas
-    Postcondicion: Retorna el ganador de la ronda
-    """
-    resultados = []
-    equipo1 = 0
-    equipo2 = 0
 
-    print(f"1:{equipo1} o 2:{equipo2}") 
-
-    resultado_ronda = int(input("Ingrese el ganador de la ronda (1 o 2): "))
-
-    while True:
-
-        resultado = {
-            "equipo1": equipo1,
-            "equipo2": equipo2,
-            "ganador_ronda": f"Equipo {resultado_ronda}"
-        }
-        resultados.append(resultado)
-
-        if resultado_ronda not in (1,2):
-            print("Ingrese un número válido.")
-        elif resultado_ronda == 1:
-            equipo1 += 1
-        else:
-            equipo2 += 1
-        if equipo1 == 5:
-            print(f"El equipo {equipo1} es el ganador.")
-            ganador = equipo1
-            break
-        elif equipo2 == 5: 
-            print(f"El equipo {equipo2} es el ganador.")
-            ganador = equipo2
-            break
-
-    with open('resultados_partida.json', 'w') as archivo_json:
-        js.dump(resultados, archivo_json, indent=4)
-
-    return ganador
+def ingresar_resultado_ronda():
+    limpiar_pantalla()
+    print("Ingresar resultado de la ronda\n")
+    # Función en construcción, vuelva prontos.
+    input("Presione Enter para volver al menú...")
 
 
-#TAB
-def mostrar_estadisticas_partidas():
+def mostrar_estadisticas():
     limpiar_pantalla()
     # (matriz con todas las estadisticas de cada partida en particular) = [[]]
     # print(tabulate(matriz, headers=["Nombre", "Kills", "Veces que murió"]))
@@ -157,13 +102,18 @@ def mostrar_estadisticas_partidas():
     input("Presione Enter para volver al menú...")
 
 
-def editar_datos_jugador():
+def editar_datos_jugador() -> None:
+    """
+    Precondición: El jugador debe estar registrado en un equipo.
+    Postcondición: Se modifican los datos del jugador seleccionado.
+    """
+
     limpiar_pantalla()
     print("Editar datos del jugador\n")
     # Función en construcción, vuelva prontos.
     input("Presione Enter para volver al menú...")
 
-#TAB
+
 def generar_podio_mvp():
     limpiar_pantalla()
     # print(tabulate(matriz, headers=["Puesto", "Equipo"]))
@@ -173,14 +123,19 @@ def generar_podio_mvp():
 
 # Funciones de menú
 def opciones_cargar_datos():
-    print("Menú de carga de datos inicial...\n")
+    print("Menú de carga de datos inicial..\n")
     print("1- Registrar torneo.")
     print("2- Cargar equipo.")
     print("3- Cargar integrantes del equipo.")
     print("0- Volver al menú principal.")
+    return None
 
 
-def opciones_funcionamiento():
+def opciones_funcionamiento() -> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Se muestran las opciones del menú de funcionamiento del programa.
+    """
     print("Menú de funcionamiento del programa.\n")
     print("1- Elegir enfrentamientos")
     print("2- Ingresar resultado de la ronda")
@@ -188,64 +143,79 @@ def opciones_funcionamiento():
     print("4- Editar datos del jugador")
     print("5- Generar podio y MVP")
     print("0- Volver al menú principal")
+    return None
 
 
-# Listas de funciones para cada menú
-
-funciones_cargar_datos = [
-    registrar_torneo,  # op 1
-    cargar_equipo,  # op 2
-    cargar_integrantes,
-]  # op 3
-
-funciones_funcionamiento = [
-    elegir_enfrentamientos,  # op 1
-    ingresar_resultado_ronda,  # op 2
-    mostrar_estadisticas,  # op 3
-    editar_datos_jugador,  # op 4
-    generar_podio_mvp,  # op 5
-]
-
-
-def menu_cargar_datos():
+def menu_cargar_datos() -> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta la función seleccionada entre las opciones del menú de carga de datos inicial.
+    """
     while True:
         limpiar_pantalla()
         opciones_cargar_datos()
         try:
-            op = int(input("Ingrese una opción: "))
+            
+            op = int(input("Ingrese una opción(0 Menú principal): "))
             if op >= 0 and op <= 3:
                 if op == 0:
                     break
-                elif op >= 1 and op <= 3:
-                    funciones_cargar_datos[op - 1]()
+                if op == 1:
+                    limpiar_pantalla()
+                    juego = seleccionar_juego()
+                    input(f"El juego seleccionado fue el {juego}.\nEnter para continuar.")
+                elif op == 2:
+                    pass
+                elif op == 3:
+                    pass
             else:
                 print("Opción inválida.")
                 input("Presione Enter para continuar...")
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
+    return None
 
 
-def menu_funcionamiento():
+def menu_funcionamiento() -> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta la función seleccionada entre las opciones del menú de funcionamiento del programa.
+    """
     while True:
         limpiar_pantalla()
         opciones_funcionamiento()
         try:
-            op = int(input("Ingrese una opción: "))
+            op = int(input("Ingrese una opción(0 Menú principal.): "))
             if op >= 0 and op <= 5:
                 if op == 0:
                     break
-                elif op >= 1 and op <= 5:
-                    funciones_funcionamiento[op - 1]()
+                if op == 1:
+                    limpiar_pantalla()
+                elif op == 2:
+                    limpiar_pantalla()
+                    ganador = ingresar_resultado_ronda()
+                    input(f"El ganador de la ronda es el equipo {ganador}.")
+                elif op == 3:
+                    limpiar_pantalla()
+                elif op == 4:
+                    limpiar_pantalla()
+                elif op == 5:
+                    limpiar_pantalla()
             else:
                 print("Opción inválida.")
                 input("Presione Enter para continuar...")
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
+    return None
 
 
-def menu_principal():
+def menu_principal() -> None:
+    """
+    Precondición: Ninguna.
+    Postcondición: Ejecuta el submenú seleccionado o cierra el programa.
+    """
     while True:
         limpiar_pantalla()
         print("Bienvenido al menú principal.\n")
@@ -268,7 +238,7 @@ def menu_principal():
         except ValueError:
             print("Opción inválida, ingrese un número.")
             input("Presione Enter para continuar...")
-
+    return None
 
 if __name__ == "__main__":
     menu_principal()
