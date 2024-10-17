@@ -2,93 +2,9 @@
     "torneos": [
         {
             "nombre_torneo": "Olympus Esports",
-            "juego": "Valorant",
-            "equipos": [
-                "Equipo A",
-                "Equipo B",
-                "Equipo C",
-                "Equipo D",
-                "Equipo E",
-                "Equipo F",
-                "Equipo G",
-                "Equipo H"
-            ],
-            "rondas": [
-                {
-                    "ronda": 1,
-                    "resultados": [
-                        {
-                            "equipo1": "Equipo A",
-                            "equipo2": "Equipo B",
-                            "ganador": "Equipo A",
-                            "mvp": "Jugador A3"
-                        },
-                        {
-                            "equipo1": "Equipo C",
-                            "equipo2": "Equipo D",
-                            "ganador": "Equipo C",
-                            "mvp": "Jugador C2"
-                        },
-                        {
-                            "equipo1": "Equipo E",
-                            "equipo2": "Equipo F",
-                            "ganador": "Equipo E",
-                            "mvp": "Jugador E1"
-                        },
-                        {
-                            "equipo1": "Equipo G",
-                            "equipo2": "Equipo H",
-                            "ganador": "Equipo G",
-                            "mvp": "Jugador G4"
-                        }
-                    ]
-                },
-                {
-                    "ronda": 2,
-                    "resultados": [
-                        {
-                            "equipo1": "Equipo A",
-                            "equipo2": "Equipo C",
-                            "ganador": "Equipo C",
-                            "mvp": "Jugador C4"
-                        },
-                        {
-                            "equipo1": "Equipo E",
-                            "equipo2": "Equipo G",
-                            "ganador": "Equipo E",
-                            "mvp": "Jugador E2"
-                        }
-                    ]
-                },
-                {
-                    "ronda": 3,
-                    "resultados": [
-                        {
-                            "equipo1": "Equipo C",
-                            "equipo2": "Equipo E",
-                            "ganador": "Equipo E",
-                            "mvp": "Jugador E3"
-                        }
-                    ]
-                },
-                {
-                    "ronda": 4,
-                    "resultados": [
-                        {
-                            "equipo1": "Equipo A",
-                            "equipo2": "Equipo G",
-                            "ganador": "Equipo G",
-                            "mvp": "Jugador G2"
-                        }
-                    ]
-                }
-            ],
-            "podio": [
-                "Equipo E",
-                "Equipo C",
-                "Equipo G"
-            ],
-            "mvp_torneo": "Jugador E3"
-        }
-    ]
-}
+            "juego": "Overwatch",
+            "equipos":[],
+            "rondas": []
+            }
+        ]
+    }
