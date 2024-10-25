@@ -1,6 +1,5 @@
 from os import system, name
 from typing import Tuple
-from tabulate import tabulate
 import json as js
 import csv
 
@@ -161,16 +160,25 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
         integrantes.append(integrante)
 
     # Abrir el archivo CSV en modo 'a' para agregar sin sobrescribir
-    with open(ruta_csv, mode='a', newline='', encoding='utf-8') as archivo_csv:
-        campos = ['Equipo', 'Nombre', 'Apellido', 'DNI']
-        escritor = csv.DictWriter(archivo_csv, fieldnames=campos)
+    try:
+        with open(ruta_csv, mode='a', newline='', encoding='utf-8') as archivo_csv:
+            campos = ['Equipo', 'Nombre', 'Apellido', 'DNI']
+            escritor = csv.DictWriter(archivo_csv, fieldnames=campos)
 
-        archivo_csv.seek(0, 2)  
-        if archivo_csv.tell() == 0:  
-            escritor.writeheader()  
+            archivo_csv.seek(0, 2)  
+            if archivo_csv.tell() == 0:  
+                escritor.writeheader()  
 
-        for integrante in integrantes:
-            escritor.writerow(integrante)
+            for integrante in integrantes:
+                escritor.writerow(integrante)
+    except FileNotFoundError as msg:
+        print(f'No se encuentra el archivo: {msg}')
+    except OSError as msg:
+        print(f'No se puede leer el archivo: {msg}')
+    except:
+        print('Error en los datos')
+    else:
+        print('\nArchivo leído correctamente')
 
     # Registra los integrantes en el torneo
     torneos = cargar_torneos(archivo)
