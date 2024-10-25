@@ -102,8 +102,7 @@ def seleccionar_juego(archivo: str, torneo_nombre: str) -> str:
 
                 for torneo in torneos.get('torneos', []):
                     if torneo.get('nombre_torneo') == torneo_nombre:
-                        torneo['juego'] = juegos[juego_seleccionado- 1]  
-                        
+                        torneo['juego'] = juegos[juego_seleccionado- 1]
                         guardar_torneos(archivo, torneos)
 
                 return juegos[juego_seleccionado- 1]
@@ -392,6 +391,10 @@ def menu_funcionamiento() -> None:
         opciones_funcionamiento()
         try:
             op = int(input("Ingrese una opción(0 Menú principal.): "))
+        except ValueError:
+            print("Opción inválida, ingrese un número.")
+            pausa()
+        else:
             if op >= 0 and op <= 5:
                 if op == 0:
                     break
@@ -411,9 +414,6 @@ def menu_funcionamiento() -> None:
             else:
                 print("Opción inválida.")
                 pausa()
-        except ValueError:
-            print("Opción inválida, ingrese un número.")
-            pausa()
     return None
 
 
@@ -432,19 +432,20 @@ def menu_principal() -> None:
 
         try:
             op = int(input("Ingrese una opción: "))
-            if op == 1:
-                menu_cargar_datos()
-            elif op == 2:
-                menu_funcionamiento()
-            elif op == 0:
-                print("Saliendo del programa...")
-                break
-            else:
-                print("Opción inválida.")
-                pausa()
         except ValueError:
             print("Opción inválida, ingrese un número.")
             pausa()
+        else:
+            if op == 0:
+                print("Saliendo del programa...")
+                break
+            elif op == 1:
+                menu_cargar_datos()
+            elif op == 2:
+                menu_funcionamiento()
+            else:
+                print("Opción inválida.")
+                pausa()
     return None
 
 
