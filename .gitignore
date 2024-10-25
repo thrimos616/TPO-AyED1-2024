@@ -4,3 +4,4 @@
 !*.csv
 !*.json
 !README.md
+.pytest_cache

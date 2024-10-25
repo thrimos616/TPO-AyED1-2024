@@ -40,7 +40,7 @@ def cargar_torneos(archivo: str) -> dict:
     Postcondicion: Retorna un diccionario con los torneos. Si tira error, retorna un diccionario vacio
     """
     try:
-        with open(archivo, 'r') as f:
+        with open(archivo, 'r', encoding='utf-8') as f:
             return js.load(f)
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo {archivo}.")
@@ -56,7 +56,7 @@ def guardar_torneos(archivo: str, torneos: dict) -> None:
     Postcondición: nada
     """
     try:
-        with open(archivo, 'w') as f:
+        with open(archivo, 'w', encoding='utf-8') as f:
             js.dump(torneos, f, indent=4)
         print("Datos guardados en el archivo json.\n")
     except (OSError, js.JSONDecodeError) as e:
