@@ -68,7 +68,7 @@ def mostrar_juegos()-> Tuple[str]:
     Argumentos: Muestra los juegos disponibles
     Postcondición: Retorna una tupla con los juegos disponibles y muestra los juegos disponibles
     """
-    juegos = ( 
+    juegos = (
     "Counter Strike",
     "Valorant",
     "League of Legend",
@@ -95,6 +95,9 @@ def seleccionar_juego(archivo: str, torneo_nombre: str) -> str:
     while True:
         try:
             juego_seleccionado = int(input("\nIndica el número del juego: "))
+        except ValueError:
+            print("\nError - Ingrese un valor válido.")
+        else:
             if juego_seleccionado <= 0 or juego_seleccionado > 5:
                 print("Número inválido, intente nuevamente.")
             else:
@@ -106,8 +109,6 @@ def seleccionar_juego(archivo: str, torneo_nombre: str) -> str:
                         guardar_torneos(archivo, torneos)
 
                 return juegos[juego_seleccionado- 1]
-        except ValueError:
-            print("\nError - Ingrese un valor válido.")
 
 
 def cargar_equipo(archivo: str, torneo_nombre: str) -> None:
@@ -349,8 +350,11 @@ def menu_cargar_datos() -> None:
         limpiar_pantalla()
         opciones_cargar_datos()
         try:
-            
             op = int(input("Ingrese una opción(0 Menú principal): "))
+        except ValueError:
+            print("Opción inválida, ingrese un número.")
+            pausa()
+        else:
             if op >= 0 and op <= 3:
                 if op == 0:
                     break
@@ -375,9 +379,6 @@ def menu_cargar_datos() -> None:
             else:
                 print("Opción inválida.")
                 pausa()
-        except ValueError:
-            print("Opción inválida, ingrese un número.")
-            pausa()
     return None
 
 def menu_funcionamiento() -> None:
