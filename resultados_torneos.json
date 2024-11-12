@@ -2,9 +2,11 @@
     "torneos": [
         {
             "nombre_torneo": "Olympus Esports",
-            "juego": "Overwatch",
-            "equipos":[],
+            "juego": "Counter Strike",
+            "equipos": [
+                "perez"
+            ],
             "rondas": []
-            }
-        ]
-    }
+        }
+    ]
+}

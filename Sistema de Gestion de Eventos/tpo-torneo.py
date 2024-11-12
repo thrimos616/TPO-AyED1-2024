@@ -119,18 +119,28 @@ def cargar_equipo(archivo: str, torneo_nombre: str) -> None:
     torneos = cargar_torneos(archivo)
 
     # Busca el equipo al cual se le va a cargar el nombre
-    for i in range(8):
+    equipos_registrados = 0
+    while equipos_registrados < 8:
         equipo = input("Ingrese el nombre del equipo: ")
 
         for torneo in torneos['torneos']:
             if torneo['nombre_torneo'] == torneo_nombre:
                 if 'equipos' not in torneo:
                     torneo['equipos'] = []
-                if len(torneo['equipos']) > 0 and i == 0:
+                if len(torneo['equipos']) > 0 and equipos_registrados == 0:
                     torneo['equipos'] = []
+
+                if equipo == "" or equipo in torneo['equipos']:
+                    print("El nombre no puede estar vacío y tampoco puede repetirse, ingrese un nombre.")
+                    continue
+
                 torneo['equipos'].append(equipo)
                 print(f"El equipo {equipo} ha sido registrado en el torneo {torneo_nombre}.")
                 guardar_torneos(archivo, torneos)
+
+                equipos_registrados += 1
+                break
+
     print("\nSe pudo cargar los 8 equipos de forma efectiva.")
     pausa()
     return None
@@ -161,16 +171,10 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
 
     # Abrir el archivo CSV en modo 'a' para agregar sin sobrescribir
     try:
-        with open(ruta_csv, mode='a', newline='', encoding='utf-8') as archivo_csv:
+        with open(ruta_csv, mode='a', newline='', encoding='utf-8-sig') as archivo_csv:
             campos = ['Equipo', 'Nombre', 'Apellido', 'DNI']
             escritor = csv.DictWriter(archivo_csv, fieldnames=campos)
 
-            archivo_csv.seek(0, 2)  
-            if archivo_csv.tell() == 0:  
-                escritor.writeheader()  
-
-            for integrante in integrantes:
-                escritor.writerow(integrante)
     except FileNotFoundError as msg:
         print(f'No se encuentra el archivo: {msg}')
     except OSError as msg:
@@ -178,7 +182,12 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
     except:
         print('Error en los datos')
     else:
-        print('\nArchivo leído correctamente')
+        archivo_csv.seek(0, 2)
+        if archivo_csv.tell() == 0:
+            escritor.writeheader()
+
+        for integrante in integrantes:
+            escritor.writerow(integrante)
 
     # Registra los integrantes en el torneo
     torneos = cargar_torneos(archivo)
@@ -186,8 +195,8 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
         if torneo['nombre_torneo'] == torneo_nombre:
             if 'integrantes' not in torneo:
                 torneo['integrantes'] = {}
-            torneo['integrantes'][equipo_nombre] = integrantes  
-            guardar_torneos(archivo, torneos)  
+            torneo['integrantes'][equipo_nombre] = integrantes
+            guardar_torneos(archivo, torneos)
             print(f"Integrantes cargados para el equipo {equipo_nombre}.")
             return None
 
@@ -210,11 +219,11 @@ def elegir_enfrentamientos(archivo: str, nombre_del_torneo: str) -> None:
         if t['nombre_torneo'] == nombre_del_torneo:
             torneo_encontrado = t
             break
-    
+
     if torneo_encontrado is None:
         print(f"Torneo '{nombre_del_torneo}' no encontrado.")
-        return 
-    
+        return
+
     equipos = torneo_encontrado.get("equipos", [])
 
 
@@ -248,11 +257,11 @@ def elegir_enfrentamientos(archivo: str, nombre_del_torneo: str) -> None:
     torneo_encontrado["rondas"].append(nueva_ronda)
 
     guardar_torneos(archivo, torneos)
-    
+
     print(f"Enfrentamientos generados para el torneo '{nombre_del_torneo}':")
     for enfrentamiento in enfrentamientos:
         print(f"{enfrentamiento['equipo1']} vs {enfrentamiento['equipo2']}")
-    
+
     return None
 
 
@@ -401,7 +410,7 @@ def menu_funcionamiento() -> None:
         try:
             op = int(input("Ingrese una opción(0 Menú principal.): "))
         except ValueError:
-            print("Opción inválida, ingrese un número.")
+            print("Dato inválido, ingrese un número.")
             pausa()
         else:
             if op >= 0 and op <= 5:
@@ -442,7 +451,7 @@ def menu_principal() -> None:
         try:
             op = int(input("Ingrese una opción: "))
         except ValueError:
-            print("Opción inválida, ingrese un número.")
+            print("Dato inválido, ingrese un número.")
             pausa()
         else:
             if op == 0:
@@ -458,8 +467,8 @@ def menu_principal() -> None:
     return None
 
 
-archivo_json = "resultados_torneos.json"  
-nombre_torneo = "Olympus Esports"  
+archivo_json = "resultados_torneos.json"
+nombre_torneo = "Olympus Esports"
 
 if __name__ == "__main__":
     menu_principal()
