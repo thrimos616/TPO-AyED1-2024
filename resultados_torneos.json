@@ -4,7 +4,14 @@
             "nombre_torneo": "Olympus Esports",
             "juego": "Counter Strike",
             "equipos": [
-                "perez"
+                "perez",
+                "rodriguez",
+                "carlini",
+                "huleh",
+                "hulej",
+                "paladini",
+                "aguilar",
+                "karsen"
             ],
             "rondas": []
         }

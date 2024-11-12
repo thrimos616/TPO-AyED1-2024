@@ -152,14 +152,23 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
     Permite cargar 5 integrantes en un equipo y los guarda en el JSON y el CSV
     Postcondición: nada
     """
+    limpiar_pantalla()
+
     ruta_csv = 'participantes.csv'
 
     # Ingresar nuevos integrantes
     integrantes = []
-    for _ in range(5):
+    integrantes_registrados = 0
+    while integrantes_registrados < 5:
+        print(f"Cargando integrante del equipo {equipo_nombre}")
+
         nombre = input("\nIngrese el nombre del integrante: ")
         apellido = input("Ingrese el apellido del integrante: ")
         dni = input("Ingrese el DNI del integrante: ")
+
+        if nombre == "" or apellido == "" or dni == "":
+            print("No puede haber ningun dato vacío.")
+            continue
 
         integrante = {
             'Equipo': equipo_nombre,
@@ -168,12 +177,19 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
             'DNI': dni
         }
         integrantes.append(integrante)
+        integrantes_registrados += 1
 
     # Abrir el archivo CSV en modo 'a' para agregar sin sobrescribir
     try:
-        with open(ruta_csv, mode='a', newline='', encoding='utf-8-sig') as archivo_csv:
+        with open(ruta_csv, mode='at', newline='', encoding='utf-8-sig') as archivo_csv:
             campos = ['Equipo', 'Nombre', 'Apellido', 'DNI']
             escritor = csv.DictWriter(archivo_csv, fieldnames=campos)
+            archivo_csv.seek(0, 2)
+            if archivo_csv.tell() == 0:
+                escritor.writeheader()
+
+            for integrante in integrantes:
+                escritor.writerow(integrante)
 
     except FileNotFoundError as msg:
         print(f'No se encuentra el archivo: {msg}')
@@ -181,13 +197,6 @@ def cargar_integrantes(archivo: str, torneo_nombre: str, equipo_nombre: str) -> 
         print(f'No se puede leer el archivo: {msg}')
     except:
         print('Error en los datos')
-    else:
-        archivo_csv.seek(0, 2)
-        if archivo_csv.tell() == 0:
-            escritor.writeheader()
-
-        for integrante in integrantes:
-            escritor.writerow(integrante)
 
     # Registra los integrantes en el torneo
     torneos = cargar_torneos(archivo)
@@ -384,7 +393,9 @@ def menu_cargar_datos() -> None:
                     cargar_equipo(archivo_json, nombre_torneo)
                 elif op == 3:
                     torneos = cargar_torneos('resultados_torneos.json')
-                    while True:
+                    equipos_finalizados = 0
+                    equipos_completos = []
+                    while equipos_finalizados < 8:
                         for torneo in torneos['torneos']:
                             print(torneo['equipos'])
                         nombre_equipo = input("\nIngrese el nombre del equipo para agregar el integrante(0 para salir): ")
@@ -392,7 +403,18 @@ def menu_cargar_datos() -> None:
                             print("saliendo.")
                             pausa()
                             break
+
+                        if nombre_equipo not in torneo['equipos']:
+                            print("\nError - Equipo no encontrado. Ingrese el nombre de un equipo registrado.\n")
+                            continue
+
+                        if nombre_equipo in equipos_completos:
+                            print("\nYa se registraron los integrantes de este equipo, intente con otro.")
+                            continue
+
                         cargar_integrantes(archivo_json, nombre_torneo, nombre_equipo)
+                        equipos_completos.append(nombre_equipo)
+                        equipos_finalizados += 1
             else:
                 print("Opción inválida.")
                 pausa()
