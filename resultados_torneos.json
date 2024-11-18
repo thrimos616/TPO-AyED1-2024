@@ -2,18 +2,345 @@
     "torneos": [
         {
             "nombre_torneo": "Olympus Esports",
-            "juego": "Counter Strike",
+            "juego": "League of Legend",
             "equipos": [
-                "perez",
-                "rodriguez",
-                "carlini",
-                "huleh",
-                "hulej",
-                "paladini",
-                "aguilar",
-                "karsen"
+                "T1",
+                "Gen.G",
+                "G2 Esports",
+                "Fnatic",
+                "100 Thieves",
+                "Cloud9",
+                "Team Liquid",
+                "Invictus Gaming"
             ],
-            "rondas": []
+            "integrantes": {
+                "T1": [
+                    {
+                        "Equipo": "T1",
+                        "Nombre": "Faker",
+                        "Apellido": "Lee",
+                        "DNI": "42429996"
+                    },
+                    {
+                        "Equipo": "T1",
+                        "Nombre": "Canna",
+                        "Apellido": "Kim",
+                        "DNI": "43439996"
+                    },
+                    {
+                        "Equipo": "T1",
+                        "Nombre": "Gumayusi",
+                        "Apellido": "Park",
+                        "DNI": "41419996"
+                    },
+                    {
+                        "Equipo": "T1",
+                        "Nombre": "Keria",
+                        "Apellido": "Ryu",
+                        "DNI": "44327463"
+                    },
+                    {
+                        "Equipo": "T1",
+                        "Nombre": "Oner",
+                        "Apellido": "Moon",
+                        "DNI": "42957485"
+                    }
+                ],
+                "Gen.G": [
+                    {
+                        "Equipo": "Gen.G",
+                        "Nombre": "Peanut",
+                        "Apellido": "Han",
+                        "DNI": "32458375"
+                    },
+                    {
+                        "Equipo": "Gen.G",
+                        "Nombre": "Ruler",
+                        "Apellido": "Park",
+                        "DNI": "39473647"
+                    },
+                    {
+                        "Equipo": "Gen.G",
+                        "Nombre": "Bdd",
+                        "Apellido": "Gwak",
+                        "DNI": "39868573"
+                    },
+                    {
+                        "Equipo": "Gen.G",
+                        "Nombre": "Chovy",
+                        "Apellido": "Jeong",
+                        "DNI": "39619406"
+                    },
+                    {
+                        "Equipo": "Gen.G",
+                        "Nombre": "Kellin",
+                        "Apellido": "Kim",
+                        "DNI": "39007959"
+                    }
+                ],
+                "G2 Esports": [
+                    {
+                        "Equipo": "G2 Esports",
+                        "Nombre": "Caps",
+                        "Apellido": "Winther",
+                        "DNI": "40009013"
+                    },
+                    {
+                        "Equipo": "G2 Esports",
+                        "Nombre": "Mikyx",
+                        "Apellido": "Mehle",
+                        "DNI": "41419021"
+                    },
+                    {
+                        "Equipo": "G2 Esports",
+                        "Nombre": "Rekkles",
+                        "Apellido": "Larsson",
+                        "DNI": "41234385"
+                    },
+                    {
+                        "Equipo": "G2 Esports",
+                        "Nombre": "Wunder",
+                        "Apellido": "Hansen",
+                        "DNI": "43329476"
+                    },
+                    {
+                        "Equipo": "G2 Esports",
+                        "Nombre": "Jankos",
+                        "Apellido": "Jankowski",
+                        "DNI": "44395864"
+                    }
+                ],
+                "Fnatic": [
+                    {
+                        "Equipo": "Fnatic",
+                        "Nombre": "Rekkles",
+                        "Apellido": "Ragnarson",
+                        "DNI": "37847693"
+                    },
+                    {
+                        "Equipo": "Fnatic",
+                        "Nombre": "Bjorn",
+                        "Apellido": "Winther",
+                        "DNI": "39856321"
+                    },
+                    {
+                        "Equipo": "Fnatic",
+                        "Nombre": "Bwipo",
+                        "Apellido": "Galatas",
+                        "DNI": "44448321"
+                    },
+                    {
+                        "Equipo": "Fnatic",
+                        "Nombre": "Selfmade",
+                        "Apellido": "Eljertowski",
+                        "DNI": "41149603"
+                    },
+                    {
+                        "Equipo": "Fnatic",
+                        "Nombre": "Hylissang",
+                        "Apellido": "Iliev Galabov",
+                        "DNI": "40499789"
+                    }
+                ],
+                "100 Thieves": [
+                    {
+                        "Equipo": "100 Thieves",
+                        "Nombre": "Ssumday",
+                        "Apellido": "Kim",
+                        "DNI": "44958358"
+                    },
+                    {
+                        "Equipo": "100 Thieves",
+                        "Nombre": "Abbedagge",
+                        "Apellido": "Kramer",
+                        "DNI": "36860345"
+                    },
+                    {
+                        "Equipo": "100 Thieves",
+                        "Nombre": "Closer",
+                        "Apellido": "Celik",
+                        "DNI": "38990565"
+                    },
+                    {
+                        "Equipo": "100 Thieves",
+                        "Nombre": "Huhi",
+                        "Apellido": "Choi",
+                        "DNI": "34563234"
+                    },
+                    {
+                        "Equipo": "100 Thieves",
+                        "Nombre": "Cody",
+                        "Apellido": "Sun Li",
+                        "DNI": "39398906"
+                    }
+                ],
+                "Cloud9": [
+                    {
+                        "Equipo": "Cloud9",
+                        "Nombre": "Blaber",
+                        "Apellido": "Blaber",
+                        "DNI": "33459604"
+                    },
+                    {
+                        "Equipo": "Cloud9",
+                        "Nombre": "Perkz",
+                        "Apellido": "Perkovic",
+                        "DNI": "37894637"
+                    },
+                    {
+                        "Equipo": "Cloud9",
+                        "Nombre": "Zven",
+                        "Apellido": "Van der Werff",
+                        "DNI": "38784623"
+                    },
+                    {
+                        "Equipo": "Cloud9",
+                        "Nombre": "Vulcan",
+                        "Apellido": "Lee",
+                        "DNI": "99346573"
+                    },
+                    {
+                        "Equipo": "Cloud9",
+                        "Nombre": "Nisqy",
+                        "Apellido": "El Yazidi",
+                        "DNI": "98436489"
+                    }
+                ],
+                "Team Liquid": [
+                    {
+                        "Equipo": "Team Liquid",
+                        "Nombre": "Jensen",
+                        "Apellido": "Nicolajsen",
+                        "DNI": "45337485"
+                    },
+                    {
+                        "Equipo": "Team Liquid",
+                        "Nombre": "Doublelift",
+                        "Apellido": "Peng",
+                        "DNI": "42128495"
+                    },
+                    {
+                        "Equipo": "Team Liquid",
+                        "Nombre": "Impact",
+                        "Apellido": "Eonyeong",
+                        "DNI": "40203927"
+                    },
+                    {
+                        "Equipo": "Team Liquid",
+                        "Nombre": "Olleh",
+                        "Apellido": "Kim",
+                        "DNI": "38374659"
+                    },
+                    {
+                        "Equipo": "Team Liquid",
+                        "Nombre": "CoreJJ",
+                        "Apellido": "Jo",
+                        "DNI": "43439633"
+                    }
+                ],
+                "Invictus Gaming": [
+                    {
+                        "Equipo": "Invictus Gaming",
+                        "Nombre": "TheShy",
+                        "Apellido": "Kang",
+                        "DNI": "43999684"
+                    },
+                    {
+                        "Equipo": "Invictus Gaming",
+                        "Nombre": "Rokkie",
+                        "Apellido": "Song",
+                        "DNI": "39968433"
+                    },
+                    {
+                        "Equipo": "Invictus Gaming",
+                        "Nombre": "Trezie",
+                        "Apellido": "Bai",
+                        "DNI": "43954535"
+                    },
+                    {
+                        "Equipo": "Invictus Gaming",
+                        "Nombre": "Ning",
+                        "Apellido": "Gao",
+                        "DNI": "43375634"
+                    },
+                    {
+                        "Equipo": "Invictus Gaming",
+                        "Nombre": "Baolan",
+                        "Apellido": "Liu",
+                        "DNI": "38875548"
+                    }
+                ]
+            },
+            "rondas": [
+                {
+                    "ronda": "cuartos",
+                    "resultados": [
+                        {
+                            "equipo1": "T1",
+                            "equipo2": "Gen.G",
+                            "ganador": "T1",
+                            "mvp": "Faker,Lee"
+                        },
+                        {
+                            "equipo1": "G2 Esports",
+                            "equipo2": "Fnatic",
+                            "ganador": "G2 Esports",
+                            "mvp": "Caps,Winther"
+                        },
+                        {
+                            "equipo1": "100 Thieves",
+                            "equipo2": "Cloud9",
+                            "ganador": "Cloud9",
+                            "mvp": "Blaber,Blaber"
+                        },
+                        {
+                            "equipo1": "Team Liquid",
+                            "equipo2": "Invictus Gaming",
+                            "ganador": "Team Liquid",
+                            "mvp": "CoreJJ,Jo"
+                        }
+                    ]
+                },
+                {
+                    "ronda": "semi-final",
+                    "resultados": [
+                        {
+                            "equipo1": "T1",
+                            "equipo2": "G2 Esports",
+                            "ganador": "T1",
+                            "mvp": "Gumayusi,Park"
+                        },
+                        {
+                            "equipo1": "Cloud9",
+                            "equipo2": "Team Liquid",
+                            "ganador": "Cloud9",
+                            "mvp": "Perkz,Perkovic"
+                        }
+                    ]
+                },
+                {
+                    "ronda": "final",
+                    "resultados": [
+                        {
+                            "equipo1": "T1",
+                            "equipo2": "Cloud9",
+                            "ganador": "T1",
+                            "mvp": "Faker,Lee"
+                        }
+                    ]
+                },
+                {
+                    "ronda": "tercer-lugar",
+                    "resultados": [
+                        {
+                            "equipo1": "G2 Esports",
+                            "equipo2": "Team Liquid",
+                            "ganador": "Team Liquid",
+                            "mvp": "CoreJJ,Jo"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
